@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.pkfilin.mealdeal",
+      "sha256_cert_fingerprints": [
+        "25:48:C1:53:C3:28:F1:BF:17:97:2B:D4:1A:BF:25:44:C7:03:D9:E6:68:5A:40:5F:F0:5A:25:6C:41:3D:23:FC"
+      ]
+    }
+  }
+]

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Einladung · Meal &amp; Deal</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f7fbf3;
+      --fg: #191d18;
+      --muted: #5a635a;
+      --accent: #2f6b3c;
+      --accent-fg: #ffffff;
+      --card: #ffffff;
+      --border: #dde5da;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1510;
+        --fg: #e1e4db;
+        --muted: #a8b3a8;
+        --accent: #95d89e;
+        --accent-fg: #00210b;
+        --card: #161d17;
+        --border: #2a332b;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    main {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: var(--accent-fg);
+      font-size: 28px;
+    }
+    h1 { margin: 0 0 8px; font-size: 1.35rem; }
+    p { margin: 0 0 16px; color: var(--muted); }
+    .cta {
+      display: inline-block;
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--accent-fg);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .cta[hidden] { display: none; }
+    ol { text-align: left; color: var(--muted); padding-left: 20px; margin: 0; }
+    code { font-size: 0.85em; word-break: break-all; }
+    footer { margin-top: 20px; font-size: 0.8rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+<main>
+  <div class="logo" aria-hidden="true">🛒</div>
+  <h1>Einladung zu Meal &amp; Deal</h1>
+
+  <div id="has-invite" hidden>
+    <p>Du wurdest zu einer geteilten Liste eingeladen. Öffne die Einladung in der App – der Schlüssel steht nur in diesem Link und wird nicht an einen Server geschickt.</p>
+    <a id="open-app" class="cta" href="#">In der App öffnen</a>
+    <footer>Die App ist noch nicht installiert? Dann zuerst die APK installieren und diesen Link erneut öffnen.</footer>
+  </div>
+
+  <div id="no-invite">
+    <p>Dieser Link enthält keine gültige Einladung.</p>
+    <ol>
+      <li>Einladungslink aus der App erneut teilen.</li>
+      <li>Link auf dem Handy öffnen, auf dem die App installiert ist.</li>
+    </ol>
+  </div>
+</main>
+
+<script>
+  // Der Einladungsschlüssel steht im Fragment und wird deshalb nie an GitHub geschickt.
+  (function () {
+    var hash = window.location.hash || "";
+    var hasInvite = /(?:^#|&)g=[0-9a-f]{32}(?:&|$)/.test(hash) &&
+                    /(?:^#|&)i=[A-Za-z0-9_-]{1,64}(?:&|$)/.test(hash) &&
+                    /(?:^#|&)k=[A-Za-z0-9_-]{43}(?:&|$)/.test(hash);
+
+    if (!hasInvite) return;
+
+    document.getElementById("has-invite").hidden = false;
+    document.getElementById("no-invite").hidden = true;
+
+    // Custom Scheme statt App Link: so bleibt der Schlüssel auch beim Klick
+    // auf dieser Seite, und Browser schickt ihn nirgendwohin.
+    document.getElementById("open-app").href = "mealdeal://join/" + hash;
+  })();
+</script>
+</body>
+</html>
