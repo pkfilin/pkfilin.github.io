@@ -1,4 +1,62 @@
 {
   "version": 1,
-  "markets": []
+  "markets": [
+    {
+      "id": "lidl",
+      "name": "Lidl",
+      "strategy": "page-scan",
+      "kind": "web",
+      "page": "https://www.lidl.de/c/online-prospekte/s10005610",
+      "pdfRegex": "https://www\\.lidl\\.de/l/prospekte/aktionsprospekt[^\"']+"
+    },
+    {
+      "id": "penny",
+      "name": "Penny",
+      "strategy": "page-scan",
+      "kind": "web",
+      "page": "https://www.penny.de/angebote/",
+      "pdfRegex": "https://[^\"]+prospekt[^\"]+\\.pdf"
+    },
+    {
+      "id": "netto",
+      "name": "Netto",
+      "strategy": "page-scan",
+      "kind": "web",
+      "page": "https://www.netto-online.de/angebote",
+      "pdfRegex": "https://[^\"]+\\.pdf"
+    },
+    {
+      "id": "aldi-nord",
+      "name": "Aldi Nord",
+      "strategy": "page-scan",
+      "kind": "web",
+      "page": "https://www.aldi-nord.de/angebote/aktuelle-prospekte.html",
+      "pdfRegex": "https://[^\"]+\\.pdf"
+    },
+    {
+      "id": "aldi-sued",
+      "name": "Aldi Süd",
+      "strategy": "page-scan",
+      "kind": "web",
+      "page": "https://www.aldi-sued.de/de/angebote/aktuelle-prospekte.html",
+      "pdfRegex": "https://[^\"]+\\.pdf"
+    },
+    {
+      "id": "rewe",
+      "name": "Rewe",
+      "strategy": "pattern",
+      "kind": "web",
+      "regional": true,
+      "url": "https://www.rewe.de/angebote/",
+      "weekStartsOn": "MONDAY"
+    },
+    {
+      "id": "kaufland",
+      "name": "Kaufland",
+      "strategy": "page-scan",
+      "kind": "web",
+      "page": "https://www.kaufland.de/offers/",
+      "pdfRegex": "https://[^\"]+\\.pdf"
+    }
+  ]
 }
